@@ -11,6 +11,7 @@ public class BoundsCheck : MonoBehaviour {
 	public bool isOnScreen = true;
 	public float camWidth;
 	public float camHeight;
+
 	[HideInInspector]
 	public bool offRight, offLeft, offUp, offDown; 
 
@@ -62,7 +63,6 @@ void LateUpdate() {
 			isOnScreen = true; 
 			offRight = offLeft = offUp = offDown = false;
 		}
-	
 
 transform.position= pos;
 }
@@ -71,9 +71,5 @@ void onDrawGizmos () {
 	if (!Application.isPlaying) return;
 	Vector3 boundSize = new Vector3 (camWidth*2 , camHeight*2, 0.1f);
 	Gizmos.DrawWireCube(Vector3.zero, boundSize);
-}
-
-
-
-
+  }
 }

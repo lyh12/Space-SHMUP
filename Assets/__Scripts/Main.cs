@@ -17,7 +17,7 @@ public class Main : MonoBehaviour {
 	void Awake() {
 		S = this;
 		bndCheck = GetComponent <BoundsCheck> ();
-		Invoke ("SpawnEnemy", 1f / enemySpawnPerSecond);
+		Invoke ("SpawnEnemy", 1f/enemySpawnPerSecond);
 	}
 
 	public void SpawnEnemy() {
@@ -25,7 +25,6 @@ public class Main : MonoBehaviour {
 		GameObject go = Instantiate<GameObject> (prefabEnemies [ndx]);
 		float enemyPadding = enemyDefaultPadding;
 		if (go.GetComponent<BoundsCheck> () !=null) {
-
 			enemyPadding = Mathf.Abs(go.GetComponent<BoundsCheck>().radius);
 		}
 
@@ -36,7 +35,7 @@ public class Main : MonoBehaviour {
 		pos.y = bndCheck.camHeight + enemyPadding;
 		go.transform.position = pos;
 
-		Invoke ("SpawnEnemy", 1f / enemySpawnPerSecond);
+		Invoke ("SpawnEnemy", 1f/enemySpawnPerSecond);
 	}
 
 	public void DelayedRestart (float delay){

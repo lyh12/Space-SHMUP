@@ -10,7 +10,12 @@ public class Hero : MonoBehaviour {
 	public float	speed = 30;
 	public float	rollMult = -45;
 	public float  	pitchMult=30;
+
 	public float gameRestartDelay = 2f; 
+
+	public GameObject projectilePrefab;
+	public float projectilespeed = 40;
+
 
     [Header("Set dynamically")]
 	[SerializeField]
@@ -44,13 +49,28 @@ public class Hero : MonoBehaviour {
 		transform.position = pos;
 		
 		// rotate the ship to make it feel more dynamic
+
+
 		transform.rotation =Quaternion.Euler(yAxis*pitchMult, xAxis*rollMult,0);
+
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			TempFire ();
+		}
 	}
+
+	void TempFire() {
+		GameObject projGo = Instantiate<GameObject> (projectilePrefab);
+		projGo.transform.position = transform.position;
+		Rigidbody rigidB = projGo.GetComponent <Rigidbody> ();
+		rigidB.velocity = Vector3.up * projectilespeed;
+	}
+
 
 	void OnTriggerEnter(Collider other){
 		Transform rootT = other.gameObject.transform.root;
 		GameObject go = rootT.gameObject;
-		//print ("Triggered: " + go.name);
+		print ("Triggered: " + go.name);
 
 
 		if (go == lastTriggerGo) {
@@ -63,7 +83,7 @@ public class Hero : MonoBehaviour {
 			shieldLevel--;
 			Destroy (go);
 		} else {
-			print ("Triggered by non-Enemy: " + go.name);
+			print ("Triggered by non-Enemy: "+go.name);
 		}
 	}
 
@@ -74,6 +94,8 @@ public class Hero : MonoBehaviour {
 		set {
 			_shieldLevel = Mathf.Min (value, 4);
 			if (value < 0) {
+
+
 				Destroy (this.gameObject);
 
 				Main.S.DelayedRestart (gameRestartDelay);
