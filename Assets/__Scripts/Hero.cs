@@ -31,7 +31,7 @@ public class Hero : MonoBehaviour {
 
 
 
-    private void Awake()
+    private void Start()
     {
         if (S == null)
         {
@@ -40,6 +40,9 @@ public class Hero : MonoBehaviour {
         {
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
+
+		ClearWeapons ();
+		weapons [0].SetType (WeaponType.blaster);
 		//fireDelegate += TempFire;
     }
 
