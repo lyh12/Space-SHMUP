@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_3 : MonoBehaviour {
+public class Enemy_3 : Enemy {
 	[Header("Set in Inspector : Enemy_3")]
 	public float lifeTime = 5;
 
