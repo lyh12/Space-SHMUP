@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		Move ();
 
-		if (showDamageDuration && Time.time > damageDoneTime) {
+		if (showingDamage && Time.time > damageDoneTime) {
 			UnShowDamage ();
 		}
 		if (bndCheck != null && bndCheck.offDown ) {

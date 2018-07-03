@@ -26,7 +26,7 @@ public class PowerUp : MonoBehaviour {
 		bndCheck = GetComponent<BoundsCheck> ();
 		cubeRend = cube.GetComponent<Renderer> ();
 
-		Vector2 vel = Random.onUnitSphere;
+		Vector3 vel = Random.onUnitSphere;
 		vel.z = 0;
 		vel.Normalize();
 
@@ -49,7 +49,7 @@ public class PowerUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		cube.transformation.rotation = Quaternion.Euler (rotperSecond * Time.time);
+		cube.transform.rotation = Quaternion.Euler (rotperSecond * Time.time);
 
 		float u = (Time.time - (birthTime + lifeTime)) / fadeTime;
 
@@ -77,7 +77,7 @@ public class PowerUp : MonoBehaviour {
 	}
 
 	public void SetType(WeaponType wt){
-		WeaponDefintion def = Main.GetWeaponDefintion (wt);
+		WeaponDefinition def = Main.GetWeaponDefinition (wt);
 		cubeRend.material.color = def.color;
 		letter.text = def.letter;
 		type = wt;

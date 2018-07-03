@@ -27,21 +27,21 @@ public class Enemy_4 : Enemy {
 
 	// Use this for initialization
 	void Start () {
-		p0 - p1= pos;
-		InitMovement();
+		p0 = p1 = pos;
+		InitMovement ();
 
 		Transform t;
-		foreach (Part prt in parts){
-			t=transform.Find(prt.name);
-			if(t!=null){
-				prt.go=t.gameObject;
-				prt.mat = prt.go.GetComponent<Renderer>().material;
+		foreach (Part prt in parts) {
+			t = transform.Find (prt.name);
+			if (t != null) {
+				prt.go = t.gameObject;
+				prt.mat = prt.go.GetComponent<Renderer> ().material;
 			}
 		}
 	}
 
-	InitMovement(){
-		p0-p1;
+	void InitMovement(){
+		p0=p1;
 		float widMinRad = bndCheck.camWidth - bndCheck.radius;
 		float hgtMinRad= bndCheck.camWidth - bndCheck.radius;
 
@@ -82,7 +82,7 @@ public class Enemy_4 : Enemy {
 	bool Destroyed(GameObject go){
 		return(Destroyed (FindPart (go)));
 	}
-	bool Destroyed(GameObject n){
+	bool Destroyed(string n){
 		return(Destroyed (FindPart (n)));
 	}
 

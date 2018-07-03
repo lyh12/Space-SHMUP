@@ -66,7 +66,7 @@ public class Weapon: MonoBehaviour{
 				} else {
 					this.gameObject.SetActive(true);
 				}
-				def= Main.GetWeaponDefintion(_type);
+				def= Main.GetWeaponDefinition(_type);
 				collarRend.material.color = def.color;
 				lastShotTime =0;
 			}
@@ -74,7 +74,7 @@ public class Weapon: MonoBehaviour{
 			public void Fire(){
 		if (!gameObject.activeInHierarchy)
 			return;
-	}
+	
 			Projectile p;
 			Vector3 vel = Vector3.up * def.velocity;
 
@@ -82,12 +82,12 @@ public class Weapon: MonoBehaviour{
 				vel.y=-vel.y;
 			}
 			switch (type) {
-				case WeaponType.blaster;
+				case WeaponType.blaster :
 				p = MakeProjectile();
 				p.rigid.velocity=vel;
 				break;
 
-				case WeaponType.spread;
+				case WeaponType.spread:
 				p=MakeProjectile();
 				p.rigid.velocity=vel;
 				p= MakeProjectile();
@@ -113,7 +113,8 @@ public class Weapon: MonoBehaviour{
 
 				go.transform.position=collar.transform.position;
 				go.transform.SetParent(PROJECTILE_ANCHOR,true);
-				prop.type =typeof;
+		Projectile p = go.GetComponent<Projectile> ();
+		p.type =type ;
 				lastShotTime =Time.time;
 				return(p);
 			}
