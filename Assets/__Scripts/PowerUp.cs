@@ -36,7 +36,9 @@ public class PowerUp : MonoBehaviour {
 		transform.rotation= Quaternion.identity;
 
 		rotperSecond = new Vector3 (Random.Range (rotMinMax.x, rotMinMax.y),
-			Random.Range (rotMinMax.x, rotMinMax.y));
+			Random.Range (rotMinMax.x, rotMinMax.y),Random.Range (rotMinMax.x, rotMinMax.y)); 
+		
+
 
 		birthTime = Time.time;
 	}
@@ -59,7 +61,7 @@ public class PowerUp : MonoBehaviour {
 			return;
 		}
 
-		if(u<0){
+		if(u>0){
 			Color c = cubeRend.material.color;
 			c.a = 1f - u;
 			cubeRend.material.color = c;
